@@ -90,7 +90,7 @@ const SwiperLegend = function SwiperLegend(options = {
     contentContainerEl.textContent = '';
     let keys = Object.keys(swiperLayers).reverse();
     const defaultLayerKey = Object.keys(swiperLayers).find(key => 
-      key.replace('__swiper', '').toLowerCase() === (window.swiperDefaultLayer || '').toLowerCase()
+      key.replace('__swiper', '').toLowerCase() === (window.defaultLayer || '').toLowerCase()
     );
     if (defaultLayerKey) {
       keys = [defaultLayerKey, ...keys.filter(k => k !== defaultLayerKey)];
