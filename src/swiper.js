@@ -546,11 +546,15 @@ const Swiper = function Swiper({  circleRadius = 50,
   }
 
   function setupLayers(viewer) {
-    const layers = findSwiperLayers(viewer);
+    let layers = findSwiperLayers(viewer);
     if (layers.length <= 0) {
       return false;
     }
 
+    if (typeof origoConfigPath === 'object' && origoConfigPath.layers) {
+      layers = origoConfigPath.layers.filter(l => l.isSwiperLayer).map(l => viewer.getLayer(l.name + '__swiper'));
+    }
+    
     console.log('Swiper defined layers', layers.length, layers.map(l => l.get('name')))
 
     setSwiperLayers(layers);
