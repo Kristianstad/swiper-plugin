@@ -91,8 +91,8 @@ const SwiperLegend = function SwiperLegend(options = {
     let keys = (options.isInlineConfig ? 
       Object.keys(swiperLayers) : 
       Object.keys(swiperLayers).reverse());
-    const defaultLayerKey = Object.keys(swiperLayers).find(key => 
-      key.replace('__swiper', '').toLowerCase() === (window.defaultLayer || '').toLowerCase()
+    const defaultLayerKey = keys.find(key => 
+      key.replace('__swiper', '').toLowerCase() === (options.defaultLayer || '').toLowerCase()
     );
     if (defaultLayerKey) {
       keys = [defaultLayerKey, ...keys.filter(k => k !== defaultLayerKey)];
