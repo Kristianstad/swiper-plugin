@@ -545,35 +545,37 @@ const Swiper = function Swiper({  circleRadius = 50,
     });
   }
 
-  function setupLayers(viewer) {
-    let layers = findSwiperLayers(viewer);
-    if (layers.length <= 0) {
-      return false;
-    }
-
-    if (origoConfigPath && typeof origoConfigPath === 'object' && Array.isArray(origoConfigPath.layers)) {
-      const layerCollection = viewer.getLayerCollection ? viewer.getLayerCollection() : viewer.getLayers();
-      const inlineLayers = [];
-
-      origoConfigPath.layers.forEach(cfgLayer => {
-        if (cfgLayer.isSwiperLayer) {
-          const swiperLayer = layerCollection.getArray().find(olLayer =>
-            olLayer.get('name') === cfgLayer.name + '__swiper'
-          );
-          if (swiperLayer) inlineLayers.push(swiperLayer);
-        }
-      });
-
-      if (inlineLayers.length > 0) {
-        layers = inlineLayers;
-      }
-    }
-    
-    console.log('Swiper defined layers', layers.length, layers.map(l => l.get('name')));
-
-    setSwiperLayers(layers);
-    return true;
+function setupLayers(viewer) {
+  let layers = findSwiperLayers(viewer);
+  if (layers.length <= 0) {
+    return false;
   }
+
+  if (typeof origoConfigPath === 'object' && origoConfigPath.layers) {
+    const inlineLayers = [];
+    origoConfigPath.layers.forEach(function(cfgLayer) {
+      if (cfgLayer.isSwiperLayer) {
+        const allLayers = viewer.getLayers().getArray ? viewer.getLayers().getArray() : viewer.getLayers();
+        const swiperLayer = allLayers.find(function(olLayer) {
+          return olLayer.get('name') === cfgLayer.name + '__swiper';
+        });
+        if (swiperLayer) {
+          inlineLayers.push(swiperLayer);
+        }
+      }
+    });
+    if (inlineLayers.length > 0) {
+      layers = inlineLayers;
+    }
+  }
+
+  console.log('Swiper defined layers', layers.length, layers.map(function(l) {
+    return l.get('name');
+  }));
+
+  setSwiperLayers(layers);
+  return true;
+}
 
   function closeSwiperTool() {
     setIndexOfLayersOnTopOfSwiper(0);
