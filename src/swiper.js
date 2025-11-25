@@ -661,7 +661,11 @@ const Swiper = function Swiper({  circleRadius = 50,
         });
       }
 
-      swiperLegend = SwiperLegend({showLayer: resetSwiperLayer, defaultLayer: defaultLayer});
+      swiperLegend = SwiperLegend({
+        showLayer: resetSwiperLayer, 
+        defaultLayer: defaultLayer,
+        isInlineConfig: typeof origoConfigPath === 'object'
+      });
 
       swiperLegendButton = Origo.ui.Button({
         cls: 'o-measure padding-small margin-bottom-smaller icon-smaller round light box-shadow hidden',
@@ -695,7 +699,7 @@ const Swiper = function Swiper({  circleRadius = 50,
       
       // if there is an origoPath => close the swiperLayers
       let promise = Promise.resolve();
-      if (typeof origoConfigPath === 'string') {
+      if (origoConfigPath) {
         promise = ManipulateLayers(viewer, origoConfigPath);
       }
       
