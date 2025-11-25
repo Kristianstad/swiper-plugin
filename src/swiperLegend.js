@@ -89,9 +89,6 @@ const SwiperLegend = function SwiperLegend(options = {
   function renderLayersList(swiperLayers) {
     contentContainerEl.textContent = '';
     let keys = Object.keys(swiperLayers);
-    if (typeof window.currentOrigoConfig === 'string') {
-      keys = keys.reverse();
-    }
     const defaultLayerKey = keys.find(key => 
       key.replace('__swiper', '').toLowerCase() === (options.defaultLayer || '').toLowerCase()
     );
