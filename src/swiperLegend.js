@@ -88,7 +88,7 @@ const SwiperLegend = function SwiperLegend(options = {
 
   function renderLayersList(swiperLayers) {
     contentContainerEl.textContent = '';
-    const keys = (options.isInlineConfig ? 
+    let keys = (options.isInlineConfig ? 
       Object.keys(swiperLayers) : 
       Object.keys(swiperLayers).reverse());
     const defaultLayerKey = Object.keys(swiperLayers).find(key => 
