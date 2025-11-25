@@ -463,7 +463,7 @@ const Swiper = function Swiper({  circleRadius = 50,
   }
   function whatTodoWithTheseVisibilityChanges(affectedVisibleLayers) {
     if (!affectedVisibleLayers || !affectedVisibleLayers.length) {
-      console.warn('why is the affectedVisibleLayers array empty?')
+      log.console('why is the affectedVisibleLayers array empty?')
       return;
     }
     if (affectedVisibleLayers.length == 1) {
@@ -545,34 +545,17 @@ const Swiper = function Swiper({  circleRadius = 50,
     });
   }
 
-function setupLayers(viewer) {
-  let layers = [];
+  function setupLayers(viewer) {
+    const layers = findSwiperLayers(viewer);
+    if (layers.length <= 0) {
+      return false;
+    }
 
-  if (typeof origoConfigPath === 'object' && Array.isArray(origoConfigPath.layers)) {
-    origoConfigPath.layers.forEach(cfgLayer => {
-      if (cfgLayer.isSwiperLayer) {
-        const layerName = cfgLayer.name + '__swiper';
-        const layer = viewer.getLayer(layerName);
-        if (layer) {
-          layers.push(layer);
-        }
-      }
-    });
-  }
-  else {
-    layers = findSwiperLayers(viewer);
-  }
+    console.log('Swiper defined layers', layers.length, layers.map(l => l.get('name')))
 
-  if (layers.length === 0) {
-    console.warn('Swiper: Inga swiper-lager hittades');
-    return false;
+    setSwiperLayers(layers);
+    return true;
   }
-     
-  console.log('Swiper defined layers', layers.length, layers.map(l => l.get('name')));
- 
-  setSwiperLayers(layers);
-  return true;
-}
 
   function closeSwiperTool() {
     setIndexOfLayersOnTopOfSwiper(0);
@@ -716,7 +699,7 @@ function setupLayers(viewer) {
         promise = ManipulateLayers(viewer, origoConfigPath);
       }
       
-      promise.then(() => {
+      promise.then(res => {
         const isSetup = setupLayers(viewer);
         if (!isSetup) {
           console.log('No swiper layers defined. Tool will not be added to the map.');
