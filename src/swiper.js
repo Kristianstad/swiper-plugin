@@ -700,7 +700,6 @@ const Swiper = function Swiper({  circleRadius = 50,
       }
       
       promise.then(res => {
-        window.currentOrigoConfig = origoConfigPath;
         const isSetup = setupLayers(viewer);
         if (!isSetup) {
           console.log('No swiper layers defined. Tool will not be added to the map.');
