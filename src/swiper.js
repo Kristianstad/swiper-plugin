@@ -53,8 +53,6 @@ const Swiper = function Swiper({  circleRadius = 50,
   const layerListTooltip = tooltips.layerList;
   const origoConfigPath = origoConfig;
 
-  window.currentOrigoConfig = origoConfigPath;
-
   // tool buttons
   let swiperMainButton;
   let swiperButton;
@@ -702,6 +700,7 @@ const Swiper = function Swiper({  circleRadius = 50,
       }
       
       promise.then(res => {
+        window.currentOrigoConfig = origoConfigPath;
         const isSetup = setupLayers(viewer);
         if (!isSetup) {
           console.log('No swiper layers defined. Tool will not be added to the map.');
