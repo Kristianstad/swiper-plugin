@@ -695,7 +695,7 @@ const Swiper = function Swiper({  circleRadius = 50,
       
       // if there is an origoPath => close the swiperLayers
       let promise = Promise.resolve();
-      if (origoConfigPath) {
+      if (typeof origoConfigPath === 'string') {
         promise = ManipulateLayers(viewer, origoConfigPath);
       }
       
