@@ -716,7 +716,7 @@ function setupLayers(viewer) {
         promise = ManipulateLayers(viewer, origoConfigPath);
       }
       
-      promise.then(res => {
+      promise.then(() => {
         const isSetup = setupLayers(viewer);
         if (!isSetup) {
           console.log('No swiper layers defined. Tool will not be added to the map.');
