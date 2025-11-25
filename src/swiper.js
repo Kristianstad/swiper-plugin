@@ -53,6 +53,8 @@ const Swiper = function Swiper({  circleRadius = 50,
   const layerListTooltip = tooltips.layerList;
   const origoConfigPath = origoConfig;
 
+  window.currentOrigoConfig = origoConfigPath;
+
   // tool buttons
   let swiperMainButton;
   let swiperButton;
