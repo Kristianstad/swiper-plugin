@@ -463,7 +463,7 @@ const Swiper = function Swiper({  circleRadius = 50,
   }
   function whatTodoWithTheseVisibilityChanges(affectedVisibleLayers) {
     if (!affectedVisibleLayers || !affectedVisibleLayers.length) {
-      log.console('why is the affectedVisibleLayers array empty?')
+      console.warn('why is the affectedVisibleLayers array empty?')
       return;
     }
     if (affectedVisibleLayers.length == 1) {
