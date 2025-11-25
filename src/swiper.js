@@ -546,33 +546,30 @@ const Swiper = function Swiper({  circleRadius = 50,
   }
 
 function setupLayers(viewer) {
-  let layers = findSwiperLayers(viewer);
-  if (layers.length <= 0) {
-    return false;
-  }
+  let layers = [];
 
-  if (typeof origoConfigPath === 'object' && origoConfigPath.layers) {
-    const inlineLayers = [];
-    origoConfigPath.layers.forEach(function(cfgLayer) {
+  if (typeof origoConfigPath === 'object' && Array.isArray(origoConfigPath.layers)) {
+    origoConfigPath.layers.forEach(cfgLayer => {
       if (cfgLayer.isSwiperLayer) {
-        const allLayers = viewer.getLayers().getArray ? viewer.getLayers().getArray() : viewer.getLayers();
-        const swiperLayer = allLayers.find(function(olLayer) {
-          return olLayer.get('name') === cfgLayer.name + '__swiper';
-        });
-        if (swiperLayer) {
-          inlineLayers.push(swiperLayer);
+        const layerName = cfgLayer.name + '__swiper';
+        const layer = viewer.getLayer(layerName);
+        if (layer) {
+          layers.push(layer);
         }
       }
     });
-    if (inlineLayers.length > 0) {
-      layers = inlineLayers;
-    }
+  }
+  else {
+    layers = findSwiperLayers(viewer);
   }
 
-  console.log('Swiper defined layers', layers.length, layers.map(function(l) {
-    return l.get('name');
-  }));
-
+  if (layers.length === 0) {
+    console.warn('Swiper: Inga swiper-lager hittades');
+    return false;
+  }
+     
+  console.log('Swiper defined layers', layers.length, layers.map(l => l.get('name')));
+ 
   setSwiperLayers(layers);
   return true;
 }
