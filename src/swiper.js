@@ -551,7 +551,23 @@ const Swiper = function Swiper({  circleRadius = 50,
       return false;
     }
 
+    if (origoConfigPath && typeof origoConfigPath === 'object' && Array.isArray(origoConfigPath.layers)) {
+      const layerCollection = viewer.getLayerCollection ? viewer.getLayerCollection() : viewer.getLayers();
+      const inlineLayers = [];
 
+      origoConfigPath.layers.forEach(cfgLayer => {
+        if (cfgLayer.isSwiperLayer) {
+          const swiperLayer = layerCollection.getArray().find(olLayer =>
+            olLayer.get('name') === cfgLayer.name + '__swiper'
+          );
+          if (swiperLayer) inlineLayers.push(swiperLayer);
+        }
+      });
+
+      if (inlineLayers.length > 0) {
+        layers = inlineLayers;
+      }
+    }
     
     console.log('Swiper defined layers', layers.length, layers.map(l => l.get('name')));
 
