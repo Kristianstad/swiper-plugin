@@ -21,7 +21,6 @@ const ManipulateLayers = function ManipulateLayers(viewer, origoConfig) {
     });
 
     _viewer.addLayers(swiperLayers);
-    setTimeout(() => {}, 0);
 
     return swiperLayers;
   }
