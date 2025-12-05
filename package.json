@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run watch-js",
     "watch-js": "webpack-cli serve --config ./tasks/webpack.dev.js --mode development",
-    "build": "webpack --config ./tasks/webpack.prod.js && npm run css:build",
+    "build": "webpack --config ./tasks/webpack.prod.js && npm run css:build && npm run compress",
     "build:dev": "webpack --config ./tasks/webpack.dev.js --mode development && npm run prebuild-sass",
     "prebuild-sass": "sass --load-path scss --load-path . scss/swiper-plugin.scss ../origo/plugins/swiper.css",
     "css:build": "sass --no-source-map scss/swiper-plugin.scss build/css/swiper.min.css && cssnano build/css/swiper.min.css build/css/swiper.min.css",
@@ -27,7 +27,6 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2",
     "webpack-merge": "^6.0.1",
-    "css-minimizer-webpack-plugin": "^7.0.0",
     "cssnano-cli": "^6.0.2"
   },
   "dependencies": {
