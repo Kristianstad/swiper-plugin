@@ -6,9 +6,10 @@
   "scripts": {
     "start": "npm run watch-js",
     "watch-js": "webpack-cli serve --config ./tasks/webpack.dev.js --mode development",
-    "build": "webpack --config ./tasks/webpack.prod.js",
+    "build": "webpack --config ./tasks/webpack.prod.js && npm run css:build",
     "build:dev": "webpack --config ./tasks/webpack.dev.js --mode development && npm run prebuild-sass",
-    "prebuild-sass": "sass --load-path scss --load-path . scss/swiper-plugin.scss ../origo/plugins/swiper.css"
+    "prebuild-sass": "sass --load-path scss --load-path . scss/swiper-plugin.scss ../origo/plugins/swiper.css",
+    "css:build": "sass scss/swiper-plugin.scss build/css/swiper.css --no-source-map && cleancss -O2 --format breakWith:lf --output build/css/swiper.min.css build/css/swiper.css && mv build/css/swiper.min.css build/css/swiper.css"
   },
   "author": "",
   "license": "MIT",
