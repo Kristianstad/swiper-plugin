@@ -9,7 +9,7 @@
     "build": "webpack --config ./tasks/webpack.prod.js && npm run css:build && npm run compress",
     "build:dev": "webpack --config ./tasks/webpack.dev.js --mode development && npm run prebuild-sass",
     "prebuild-sass": "sass --load-path scss --load-path . scss/swiper-plugin.scss ../origo/plugins/swiper.css",
-    "css:build": "sass --no-source-map scss/swiper-plugin.scss build/css/swiper.min.css && postcss build/css/swiper.min.css -o build/css/swiper.min.css --no-map",
+    "css:build": "sass --no-source-map scss/swiper-plugin.scss build/css/swiper.min.css && postcss build/css/swiper.min.css -o build/css/swiper.min.css --no-map --use cssnano",
     "compress": "gzip -9kf build/js/swiper.min.js build/css/swiper.min.css && brotli --best --keep build/js/swiper.min.js build/css/swiper.min.css"
   },
   "author": "",
