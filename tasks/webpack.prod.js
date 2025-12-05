@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const { merge } = require("webpack-merge");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
@@ -9,10 +8,10 @@ module.exports = merge(common, {
     nodeEnv: "production",
     minimize: true,
     minimizer: [
-      new (require('terser-webpack-plugin'))({
+      new TerserPlugin({
         terserOptions: {
-          compress: { pure_funcs: ['console.log','console.info'] },
-          mangle: true,           // manglar funktions-/variabelnamn
+          compress: { pure_funcs: ["console.log", "console.info"] },
+          mangle: true,
           format: { comments: false }
         },
         extractComments: false
@@ -38,12 +37,4 @@ module.exports = merge(common, {
   plugins: [
     new webpack.optimize.AggressiveMergingPlugin(),
   ],
-  optimization: {
-    nodeEnv: "production",
-    minimize: true,
-    minimizer: [
-      `...`,                     // behåller default TerserPlugin för JS
-      new CssMinimizerPlugin(),  // detta minifierar CSS-filen
-    ],
-  },
 });
