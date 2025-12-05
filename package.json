@@ -9,7 +9,7 @@
     "build": "webpack --config ./tasks/webpack.prod.js && npm run css:build",
     "build:dev": "webpack --config ./tasks/webpack.dev.js --mode development && npm run prebuild-sass",
     "prebuild-sass": "sass --load-path scss --load-path . scss/swiper-plugin.scss ../origo/plugins/swiper.css",
-    "css:build": "sass --style=compressed --no-source-map scss/swiper-plugin.scss build/css/swiper.min.css"
+    "css:build": "sass --style=expanded --no-source-map scss/swiper-plugin.scss build/css/swiper.min.css && cssnano build/css/swiper.min.css build/css/swiper.min.css"
   },
   "author": "",
   "license": "MIT",
