@@ -31,10 +31,9 @@ module.exports = merge(common, {
   devtool: false,
   mode: "production",
   module: {
-    rules: [
-    ],
+    rules: []
   },
   plugins: [
-    new webpack.optimize.AggressiveMergingPlugin(),
-  ],
+    new webpack.optimize.AggressiveMergingPlugin()
+  ]
 });
