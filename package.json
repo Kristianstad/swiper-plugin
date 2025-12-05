@@ -9,7 +9,7 @@
     "build": "webpack --config ./tasks/webpack.prod.js && npm run css:build && npm run compress",
     "build:dev": "webpack --config ./tasks/webpack.dev.js --mode development && npm run prebuild-sass",
     "prebuild-sass": "sass --load-path scss --load-path . scss/swiper-plugin.scss ../origo/plugins/swiper.css",
-    "css:build": "sass --no-source-map scss/swiper-plugin.scss build/css/swiper.min.css && cssnano build/css/swiper.min.css build/css/swiper.min.css",
+    "css:build": "sass --no-source-map scss/swiper-plugin.scss build/css/swiper.min.css && postcss build/css/swiper.min.css -o build/css/swiper.min.css --no-map",
     "compress": "gzip -9kf build/js/swiper.min.js build/css/swiper.min.css && brotli --best --keep build/js/swiper.min.js build/css/swiper.min.css"
   },
   "author": "",
@@ -20,14 +20,15 @@
     "imports-loader": "^5.0.0",
     "mini-css-extract-plugin": "^2.9.4",
     "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "cssnano": "^7.1.2",
     "prettier": "3.6.2",
     "sass-embedded": "^1.92.1",
     "webpack": "^5.101.3",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2",
-    "webpack-merge": "^6.0.1",
-    "cssnano-cli": "^6.0.2"
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "core-js": "^3.45.1",
