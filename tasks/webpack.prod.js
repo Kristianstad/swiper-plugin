@@ -7,7 +7,17 @@ const common = require("./webpack.common.js");
 module.exports = merge(common, {
   optimization: {
     nodeEnv: "production",
-    minimize: true
+    minimize: true,
+    minimizer: [
+      new (require('terser-webpack-plugin'))({
+        terserOptions: {
+          compress: { pure_funcs: ['console.log','console.info'] },
+          mangle: true,           // manglar funktions-/variabelnamn
+          format: { comments: false }
+        },
+        extractComments: false
+      })
+    ]
   },
   performance: {
     hints: false,
