@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
@@ -55,4 +56,12 @@ module.exports = merge(common, {
       filename: "../css/swiper.css",
     }),
   ],
+  optimization: {
+    nodeEnv: "production",
+    minimize: true,
+    minimizer: [
+      `...`,                     // behåller default TerserPlugin för JS
+      new CssMinimizerPlugin(),  // detta minifierar CSS-filen
+    ],
+  },
 });
