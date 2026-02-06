@@ -1,4 +1,4 @@
-# Swiper
+# Swiper Kristianstad (fork of https://github.com/SigtunaGIS/swiper-plugin)
 
 Swiper plugin can be used to compare two different views in Origo.
 
