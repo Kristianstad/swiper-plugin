@@ -2,6 +2,8 @@ name: Build and package the Swiper plugin
 
 on:
   workflow_dispatch:
+  push:               # Automatiskt triggad vid commit
+    branches: [ main ]
 
 jobs:
   build:
