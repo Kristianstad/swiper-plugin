@@ -26,5 +26,5 @@ jobs:
       - name: Packa artefakter (build)
         uses: actions/upload-artifact@v4
         with:
-          name: build
+          name: swiper-built-assets
           path: build/
