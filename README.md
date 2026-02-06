@@ -2,7 +2,7 @@
 
 Swiper plugin can be used to compare two different views in Origo.
 
-## Download built files [here](https://nightly.link/Kristianstad/swiper-plugin/workflows/build-compress/main/swiper-built-assets.zip).
+## Download built files [here](https://nightly.link/Kristianstad/swiper-plugin/workflows/build/main/swiper-built-assets.zip).
 
 ## How to build the plugin yourself
 
