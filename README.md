@@ -2,7 +2,9 @@
 
 Swiper plugin can be used to compare two different views in Origo.
 
-## Download the plugin
+## Download built files [here](https://nightly.link/Kristianstad/origo-urlzoomtolayer/workflows/build-compress/main/urlzoomtolayer-compressed-assets.zip).
+
+## How to build the plugin yourself
 
 - Download the code.
 - Unpack it to your local folder.
