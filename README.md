@@ -85,7 +85,7 @@ Option | Type | Description
 `OrigoConfig` | string | Used to duplicate layers to the plugin. - Required
 `circleRadius` | number | Radius in meters for the circle - Default is `50`
 `alwaysOnTop` | boolean | Whether or not the swiper layers should be on top of all layers from Origo. If false then only Origo layers with `"isUnderSwiper": true` will be under the swiper layers. - Default is `false`
-`initialLayer` | string | The name of the layer which should be picked when first enabling the tool. - Default is `null` and will pick the first swiper layer
+`initialLayer` | string | The name of the layer which should be picked when first enabling the tool. In this fork the initialLayer is always placed first in the Swiper layer list. - Default is `null` and will pick the first swiper layer
 `initialControl` | array | [null/swipe/clip] Tool to be enable when the swiper is enabled - Default is `null`
 `showLayerListOnStart` | boolean | If the layer list should be open when starting the swiper. - Default is `false`
 `tooltips` | object | Contains the tooltip text for the existing buttons
